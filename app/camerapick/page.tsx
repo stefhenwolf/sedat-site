@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "CameraPick",
@@ -45,13 +46,13 @@ export default function CameraPickPage() {
 
       <div className="mx-auto flex max-w-7xl flex-col gap-8">
         <div className="flex items-center justify-between">
-          <Link
-            href="/"
+          <a
+            href="https://sedatpala.site"
             className="inline-flex items-center gap-2 text-sm font-semibold text-foreground/70 transition-colors hover:text-foreground"
           >
             <span aria-hidden="true">←</span>
             Sedat Pala
-          </Link>
+          </a>
 
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-strong px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
             iPhone App
@@ -65,6 +66,21 @@ export default function CameraPickPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.34em] text-accent">
                   CameraPick
                 </p>
+                <div className="mt-6 flex items-center gap-4">
+                  <div className="overflow-hidden rounded-[1.65rem] border border-white/60 shadow-[0_20px_40px_rgba(24,56,113,0.18)]">
+                    <Image
+                      src="/camerapick-icon.png"
+                      alt="CameraPick app icon"
+                      width={88}
+                      height={88}
+                      className="h-[88px] w-[88px] object-cover"
+                      priority
+                    />
+                  </div>
+                  <div className="rounded-full border border-border bg-surface-strong px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+                    Official app symbol
+                  </div>
+                </div>
                 <h1 className="font-display mt-6 max-w-4xl text-5xl leading-[0.94] tracking-[-0.05em] sm:text-6xl lg:text-7xl">
                   Discover cameras and lenses with less friction.
                 </h1>

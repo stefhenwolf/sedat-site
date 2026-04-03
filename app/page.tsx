@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
     <main className="relative isolate min-h-screen overflow-hidden px-6 py-8 text-foreground sm:px-10 lg:px-16 lg:py-12">
@@ -21,7 +23,7 @@ export default function Home() {
 
           <a
             className="inline-flex items-center justify-center rounded-full border border-border bg-surface-strong px-5 py-3 text-sm font-semibold text-foreground transition-transform duration-300 hover:-translate-y-0.5"
-            href="mailto:hello@sedatpala.site"
+            href="mailto:setadpala@gmail.com"
           >
             Start a conversation
           </a>
@@ -80,16 +82,36 @@ export default function Home() {
 
             <div className="mt-8 rounded-[1.5rem] border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.82),rgba(246,236,224,0.64))] p-5 dark:bg-[linear-gradient(180deg,rgba(59,42,30,0.82),rgba(34,24,18,0.82))]">
               <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h2 className="font-display text-3xl">CameraPick</h2>
-                  <p className="mt-3 text-sm leading-7 text-foreground/70">
-                    A cleaner way to discover, compare, and choose the right
-                    camera with confidence.
-                  </p>
+                <div className="flex items-start gap-4">
+                  <div className="overflow-hidden rounded-[1.35rem] border border-border/80 shadow-[0_14px_32px_rgba(26,49,92,0.16)]">
+                    <Image
+                      src="/camerapick-icon.png"
+                      alt="CameraPick app icon"
+                      width={72}
+                      height={72}
+                      className="h-[72px] w-[72px] object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h2 className="font-display text-3xl">CameraPick</h2>
+                    <p className="mt-3 text-sm leading-7 text-foreground/70">
+                      A cleaner way to discover, compare, and choose the right
+                      camera with confidence.
+                    </p>
+                  </div>
                 </div>
                 <div className="rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-accent">
                   Live
                 </div>
+              </div>
+              <div className="mt-6 overflow-hidden rounded-[1.4rem] border border-white/60 bg-[linear-gradient(135deg,rgba(27,107,203,0.14),rgba(255,255,255,0.65))] p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+                  Official app symbol
+                </p>
+                <p className="mt-2 text-sm leading-7 text-foreground/72">
+                  The same CameraPick symbol used in the iOS app, now carried
+                  through to the website for stronger product continuity.
+                </p>
               </div>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-3">

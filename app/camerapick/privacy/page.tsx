@@ -21,7 +21,7 @@ const sections = [
   },
   {
     title: "Source and contact",
-    body: "This page summarizes the privacy information publicly shown on the CameraPick App Store listing. For privacy-related questions, contact hello@sedatpala.site.",
+    body: "This page summarizes the privacy information publicly shown on the CameraPick App Store listing. For privacy-related questions, contact setadpala@gmail.com.",
   },
 ];
 

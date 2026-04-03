@@ -37,10 +37,10 @@ export default function CameraPickSupportPage() {
                 Email
               </p>
               <a
-                href="mailto:hello@sedatpala.site?subject=CameraPick%20Support"
+                href="mailto:setadpala@gmail.com?subject=CameraPick%20Support"
                 className="mt-3 inline-block text-lg font-semibold"
               >
-                hello@sedatpala.site
+                setadpala@gmail.com
               </a>
             </div>
 
