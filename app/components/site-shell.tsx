@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 const navigationItems = [
   { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Apps", href: "/apps" },
   { label: "YouTube", href: "/youtube" },
   { label: "Photography", href: "/photography" },
@@ -91,7 +92,7 @@ export function SiteShell({
 
         <div
           className={`grid gap-10 py-10 ${
-            aside ? "lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-14" : ""
+            aside ? "lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-14" : ""
           }`}
         >
           <section className="min-w-0">{children}</section>
