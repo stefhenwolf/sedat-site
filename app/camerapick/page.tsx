@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "CameraPick",
@@ -44,13 +45,13 @@ export default function CameraPickPage() {
 
       <div className="mx-auto flex max-w-7xl flex-col gap-8">
         <div className="flex items-center justify-between">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-foreground/70 transition-colors hover:text-foreground"
           >
             <span aria-hidden="true">←</span>
             Sedat Pala
-          </a>
+          </Link>
 
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-strong px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-accent">
             iPhone App
@@ -84,12 +85,12 @@ export default function CameraPickPage() {
                 >
                   View on the App Store
                 </a>
-                <a
-                  href="/camerapick/support"
+                <Link
+                  href="support"
                   className="inline-flex items-center justify-center rounded-full border border-border bg-surface-strong px-6 py-3 text-sm font-semibold text-foreground/80 transition-colors duration-300 hover:bg-white/60 dark:hover:bg-white/5"
                 >
                   Support
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -135,12 +136,12 @@ export default function CameraPickPage() {
                 </div>
 
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <a
-                    href="/camerapick/privacy"
+                  <Link
+                    href="privacy"
                     className="inline-flex items-center rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground/80 transition-colors hover:bg-surface-strong"
                   >
                     Privacy Policy
-                  </a>
+                  </Link>
                   <a
                     href="https://apps.apple.com/tr/app/camerapick/id6760162723"
                     target="_blank"

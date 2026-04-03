@@ -1,11 +1,31 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export function proxy(req: Request) {
-  const url = new URL(req.url);
+const CAMERAPICK_HOST = "camerapick.sedatpala.site";
+const ASSET_PREFIXES = ["/_next", "/favicon.ico", "/robots.txt", "/sitemap.xml"];
+
+export function proxy(req: NextRequest) {
+  const url = req.nextUrl.clone();
   const host = req.headers.get("host")?.toLowerCase().split(":")[0];
 
-  if (host === "camerapick.sedatpala.site") {
+  if (host !== CAMERAPICK_HOST) {
+    return NextResponse.next();
+  }
+
+  const isAssetRequest =
+    ASSET_PREFIXES.some((prefix) => url.pathname.startsWith(prefix)) ||
+    /\.[a-z0-9]+$/i.test(url.pathname);
+
+  if (isAssetRequest || url.pathname.startsWith("/api")) {
+    return NextResponse.next();
+  }
+
+  if (url.pathname === "/") {
     url.pathname = "/camerapick";
+    return NextResponse.rewrite(url);
+  }
+
+  if (!url.pathname.startsWith("/camerapick")) {
+    url.pathname = `/camerapick${url.pathname}`;
     return NextResponse.rewrite(url);
   }
 

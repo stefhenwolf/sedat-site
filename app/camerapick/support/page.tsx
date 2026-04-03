@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "CameraPick Support",
@@ -9,13 +10,13 @@ export default function CameraPickSupportPage() {
   return (
     <main className="min-h-screen px-6 py-8 sm:px-10 lg:px-16 lg:py-12">
       <div className="mx-auto flex max-w-4xl flex-col gap-8">
-        <a
-          href="/camerapick"
+        <Link
+          href=".."
           className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-foreground/70 transition-colors hover:text-foreground"
         >
           <span aria-hidden="true">←</span>
           Back to CameraPick
-        </a>
+        </Link>
 
         <section className="glass-panel soft-ring rounded-[2rem] px-6 py-8 sm:px-8 sm:py-10">
           <p className="text-xs font-semibold uppercase tracking-[0.34em] text-accent">
