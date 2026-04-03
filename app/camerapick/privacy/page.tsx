@@ -7,20 +7,20 @@ export const metadata: Metadata = {
 
 const sections = [
   {
-    title: "Information",
-    body: "CameraPick may collect limited technical and usage information necessary to operate the app, improve reliability, and understand overall product quality.",
+    title: "Data used to track you",
+    body: "According to the App Store listing, data that may be used to track users across apps and websites can include location, identifiers, and usage data.",
   },
   {
-    title: "How data is used",
-    body: "Any collected information is used to provide app functionality, respond to support requests, diagnose issues, and improve the experience over time.",
+    title: "Data linked to you",
+    body: "The App Store listing indicates that coarse location, device identifiers, usage data such as product interaction and advertising data, and performance diagnostics may be collected and linked to identity for third-party advertising and analytics.",
   },
   {
-    title: "Third-party services",
-    body: "The app may rely on third-party infrastructure or analytics providers. Those services may process limited technical information according to their own policies.",
+    title: "Data not linked to you",
+    body: "Crash-related diagnostics may also be collected for analytics without being linked to identity, based on the information currently shown in the App Store privacy section.",
   },
   {
-    title: "Contact",
-    body: "For any privacy-related question, request, or concern, contact hello@sedatpala.site.",
+    title: "Source and contact",
+    body: "This page summarizes the privacy information publicly shown on the CameraPick App Store listing. For privacy-related questions, contact hello@sedatpala.site.",
   },
 ];
 
@@ -44,8 +44,8 @@ export default function CameraPickPrivacyPage() {
             CameraPick Privacy Policy
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-foreground/72">
-            This page provides a simple overview of how CameraPick may handle
-            data in connection with the app and related support communication.
+            This page summarizes the privacy disclosures visible on the App
+            Store listing for CameraPick as of April 3, 2026.
           </p>
 
           <div className="mt-10 space-y-4">
