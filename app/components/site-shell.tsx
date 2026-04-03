@@ -6,6 +6,7 @@ const navigationItems = [
   { label: "Apps", href: "/apps" },
   { label: "YouTube", href: "/youtube" },
   { label: "Photography", href: "/photography" },
+  { label: "Music", href: "/music" },
 ];
 
 type SiteShellProps = {
@@ -44,7 +45,7 @@ export function SiteShell({
             </p>
           </div>
 
-          <nav className="flex flex-wrap items-center gap-2">
+          <nav className="flex max-w-full items-center gap-2 overflow-x-auto whitespace-nowrap pb-1">
             {navigationItems.map((item) => {
               const isActive = item.label === active;
               return (
@@ -52,7 +53,7 @@ export function SiteShell({
                   key={item.label}
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                  className={`shrink-0 rounded-full border px-3 py-2 text-sm font-medium transition-colors duration-300 ${
                     isActive
                       ? "border-[#181818] bg-[#181818] !text-white"
                       : "border-border bg-surface-strong text-foreground/78 hover:bg-white/70"
