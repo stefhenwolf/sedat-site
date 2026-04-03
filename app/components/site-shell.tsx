@@ -51,11 +51,13 @@ export function SiteShell({
                 <Link
                   key={item.label}
                   href={item.href}
+                  aria-current={isActive ? "page" : undefined}
                   className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-300 ${
                     isActive
-                      ? "border-[#181818] bg-[#181818] text-white"
+                      ? "border-[#181818] bg-[#181818] !text-white"
                       : "border-border bg-surface-strong text-foreground/78 hover:bg-white/70"
                   }`}
+                  style={isActive ? { color: "#ffffff" } : undefined}
                 >
                   {item.label}
                 </Link>
