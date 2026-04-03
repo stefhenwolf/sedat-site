@@ -1,26 +1,94 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f3ecdf;
   --foreground: #171717;
+  --surface: rgba(255, 251, 245, 0.74);
+  --surface-strong: rgba(255, 248, 239, 0.9);
+  --border: rgba(73, 53, 33, 0.12);
+  --accent: #8a5a35;
+  --accent-soft: rgba(138, 90, 53, 0.14);
+  --shadow: 0 24px 80px rgba(56, 37, 17, 0.14);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #19120d;
+    --foreground: #f8f1e8;
+    --surface: rgba(40, 29, 21, 0.72);
+    --surface-strong: rgba(52, 37, 26, 0.9);
+    --border: rgba(255, 232, 211, 0.1);
+    --accent: #d7a679;
+    --accent-soft: rgba(215, 166, 121, 0.14);
+    --shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
   }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-image:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.82), transparent 34%),
+    radial-gradient(circle at 80% 20%, rgba(210, 172, 138, 0.22), transparent 24%),
+    linear-gradient(135deg, rgba(255, 251, 245, 0.7), rgba(239, 226, 207, 0.55));
+  font-family: var(--font-sans), sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+.glass-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.soft-ring {
+  position: relative;
+}
+
+.soft-ring::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(138, 90, 53, 0.18));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
