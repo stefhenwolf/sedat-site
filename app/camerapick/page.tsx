@@ -92,18 +92,19 @@ export default function CameraPickPage() {
                 </p>
               </div>
 
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                 <a
                   href="https://apps.apple.com/tr/app/camerapick/id6760162723"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-[#181818] px-6 py-3 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5"
+                  className="inline-flex min-w-[240px] items-center justify-center rounded-full bg-[#181818] px-6 py-3 text-sm font-semibold !text-white transition-transform duration-300 hover:-translate-y-0.5"
+                  style={{ color: "#ffffff" }}
                 >
                   View on the App Store
                 </a>
                 <Link
                   href="support"
-                  className="inline-flex items-center justify-center rounded-full border border-border bg-surface-strong px-6 py-3 text-sm font-semibold text-foreground/80 transition-colors duration-300 hover:bg-white/60 dark:hover:bg-white/5"
+                  className="inline-flex min-w-[180px] items-center justify-center rounded-full border border-border bg-surface-strong px-6 py-3 text-sm font-semibold text-foreground/80 transition-colors duration-300 hover:bg-white/60 dark:hover:bg-white/5"
                 >
                   Support
                 </Link>

@@ -99,6 +99,15 @@ export default function AppsPage() {
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-surface text-xs font-semibold text-accent">
                   01
                 </div>
+                <div className="h-10 w-10 shrink-0 overflow-hidden rounded-xl border border-border/80 shadow-[0_8px_18px_rgba(26,49,92,0.12)]">
+                  <Image
+                    src="/camerapick-icon.png"
+                    alt="CameraPick app icon"
+                    width={40}
+                    height={40}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
                 <div>
                   <p className="text-sm font-semibold">CameraPick</p>
                   <p className="mt-1 text-sm text-foreground/65">
