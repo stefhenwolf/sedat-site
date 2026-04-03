@@ -1,8 +1,18 @@
 import Image from "next/image";
 
+const navigationItems = [
+  { label: "Home", href: "#home" },
+  { label: "Apps", href: "#apps" },
+  { label: "YouTube", href: "#youtube" },
+  { label: "Photography", href: "#photography" },
+];
+
 export default function Home() {
   return (
-    <main className="relative isolate min-h-screen overflow-hidden px-6 py-8 text-foreground sm:px-10 lg:px-16 lg:py-12">
+    <main
+      id="home"
+      className="relative isolate min-h-screen overflow-hidden px-6 py-8 text-foreground sm:px-10 lg:px-16 lg:py-12"
+    >
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-[-10%] top-0 h-72 w-72 rounded-full bg-[radial-gradient(circle,_rgba(164,115,76,0.26),_transparent_68%)] blur-3xl" />
         <div className="absolute right-[-8%] top-[18%] h-80 w-80 rounded-full bg-[radial-gradient(circle,_rgba(255,255,255,0.55),_transparent_62%)] blur-3xl" />
@@ -10,11 +20,34 @@ export default function Home() {
       </div>
 
       <section className="glass-panel soft-ring mx-auto w-full max-w-7xl rounded-[2rem] px-6 py-6 sm:px-8 sm:py-8 lg:px-12 lg:py-10">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/80 pb-6">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
+              Sedat Pala
+            </p>
+            <p className="mt-2 text-sm text-foreground/65">
+              Notes on apps, media, and visual work.
+            </p>
+          </div>
+
+          <nav className="flex flex-wrap items-center gap-2">
+            {navigationItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="rounded-full border border-border bg-surface-strong px-4 py-2 text-sm font-medium text-foreground/78 transition-colors duration-300 hover:bg-white/70"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+
         <header className="border-b border-border/80 pb-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col gap-6 pt-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-accent">
-                Sedat Pala
+                Home
               </p>
               <h1 className="font-display mt-6 max-w-4xl text-5xl leading-[0.96] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
                 A quieter,
@@ -60,15 +93,16 @@ export default function Home() {
                   first screen onward.
                 </p>
 
-                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                   <a
-                    className="inline-flex items-center justify-center rounded-full bg-[#181818] px-6 py-3 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5"
+                    className="inline-flex min-w-[220px] items-center justify-center rounded-full bg-[#181818] px-6 py-3 text-sm font-semibold !text-white transition-transform duration-300 hover:-translate-y-0.5"
                     href="mailto:setadpala@gmail.com"
+                    style={{ color: "#ffffff" }}
                   >
                     Start a conversation
                   </a>
                   <a
-                    className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground/80 transition-colors duration-300 hover:bg-surface-strong"
+                    className="inline-flex min-w-[220px] items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground/80 transition-colors duration-300 hover:bg-surface-strong"
                     href="#featured-work"
                   >
                     View featured work
@@ -77,64 +111,95 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid gap-8 border-b border-border/70 py-10 lg:grid-cols-[140px_minmax(0,1fr)]">
+            <div
+              id="apps"
+              className="grid gap-8 border-b border-border/70 py-10 lg:grid-cols-[140px_minmax(0,1fr)]"
+            >
               <div className="text-xs font-semibold uppercase tracking-[0.28em] text-accent/90">
-                Writing
+                Apps
               </div>
 
               <div className="space-y-5">
                 <article className="rounded-[1.5rem] border border-border bg-surface-strong px-5 py-5">
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">
-                    Product note
+                    Featured
+                  </p>
+                  <h2 className="mt-3 text-2xl font-semibold tracking-tight">
+                    CameraPick
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-sm leading-7 text-foreground/72">
+                    A cleaner way to discover cameras and lenses, compare
+                    models, and make better gear decisions with less friction.
+                  </p>
+                </article>
+
+                <article className="rounded-[1.5rem] border border-border bg-surface-strong px-5 py-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+                    Philosophy
                   </p>
                   <h2 className="mt-3 text-2xl font-semibold tracking-tight">
                     Calm software is a product decision.
                   </h2>
                   <p className="mt-3 max-w-2xl text-sm leading-7 text-foreground/72">
                     Good product design is often subtraction. The fewer things a
-                    user has to decode, the more premium the experience feels.
-                  </p>
-                </article>
-
-                <article className="rounded-[1.5rem] border border-border bg-surface-strong px-5 py-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">
-                    Approach
-                  </p>
-                  <h2 className="mt-3 text-2xl font-semibold tracking-tight">
-                    Editorial structure creates trust.
-                  </h2>
-                  <p className="mt-3 max-w-2xl text-sm leading-7 text-foreground/72">
-                    Clear hierarchy, restrained color, and deliberate spacing
-                    make product pages feel more reliable before a user even
-                    reads the details.
+                    user has to decode, the more premium and trustworthy the
+                    experience feels.
                   </p>
                 </article>
               </div>
             </div>
 
-            <div className="grid gap-8 pt-10 lg:grid-cols-[140px_minmax(0,1fr)]">
+            <div
+              id="youtube"
+              className="grid gap-8 border-b border-border/70 py-10 lg:grid-cols-[140px_minmax(0,1fr)]"
+            >
               <div className="text-xs font-semibold uppercase tracking-[0.28em] text-accent/90">
-                Focus
+                YouTube
+              </div>
+
+              <div className="space-y-5">
+                <article className="rounded-[1.5rem] border border-border bg-surface-strong px-5 py-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+                    Direction
+                  </p>
+                  <h2 className="mt-3 text-2xl font-semibold tracking-tight">
+                    Product explainers, comparisons, and visual notes.
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-sm leading-7 text-foreground/72">
+                    A section for future videos around cameras, apps, product
+                    breakdowns, and behind-the-scenes work. Structured like a
+                    journal instead of a loud content feed.
+                  </p>
+                </article>
+              </div>
+            </div>
+
+            <div
+              id="photography"
+              className="grid gap-8 pt-10 lg:grid-cols-[140px_minmax(0,1fr)]"
+            >
+              <div className="text-xs font-semibold uppercase tracking-[0.28em] text-accent/90">
+                Photography
               </div>
 
               <div className="grid gap-4 sm:grid-cols-3">
                 <div className="rounded-[1.4rem] border border-border bg-surface-strong px-5 py-5">
                   <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                    Product
+                    Street
                   </p>
-                  <p className="mt-3 text-lg font-semibold">Clear buyer journeys</p>
+                  <p className="mt-3 text-lg font-semibold">Quiet frames and texture</p>
                 </div>
                 <div className="rounded-[1.4rem] border border-border bg-surface-strong px-5 py-5">
                   <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                    Design
+                    Portraits
                   </p>
-                  <p className="mt-3 text-lg font-semibold">Quiet premium interfaces</p>
+                  <p className="mt-3 text-lg font-semibold">Natural light and calm tone</p>
                 </div>
                 <div className="rounded-[1.4rem] border border-border bg-surface-strong px-5 py-5">
                   <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                    Build
+                    Gear
                   </p>
-                  <p className="mt-3 text-lg font-semibold">Shipped with care</p>
+                  <p className="mt-3 text-lg font-semibold">Field notes and camera picks</p>
                 </div>
               </div>
             </div>
@@ -160,9 +225,9 @@ export default function Home() {
                   />
                 </div>
                 <div className="min-w-0">
-                  <div className="flex items-center justify-between gap-3">
-                    <h2 className="font-display text-3xl">CameraPick</h2>
-                    <div className="rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+                <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <h2 className="min-w-0 text-balance font-display text-3xl">CameraPick</h2>
+                    <div className="shrink-0 rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-accent">
                       Live
                     </div>
                   </div>
