@@ -67,13 +67,13 @@ export default function CameraPickPage() {
                   CameraPick
                 </p>
                 <div className="mt-6 flex items-center gap-4">
-                  <div className="overflow-hidden rounded-[1.65rem] border border-white/60 shadow-[0_20px_40px_rgba(24,56,113,0.18)]">
+                  <div className="h-[88px] w-[88px] shrink-0 overflow-hidden rounded-[1.65rem] border border-white/60 shadow-[0_20px_40px_rgba(24,56,113,0.18)]">
                     <Image
                       src="/camerapick-icon.png"
                       alt="CameraPick app icon"
                       width={88}
                       height={88}
-                      className="h-[88px] w-[88px] object-cover"
+                      className="h-full w-full object-cover"
                       priority
                     />
                   </div>
@@ -97,7 +97,7 @@ export default function CameraPickPage() {
                   href="https://apps.apple.com/tr/app/camerapick/id6760162723"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background transition-transform duration-300 hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center rounded-full bg-[#181818] px-6 py-3 text-sm font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5"
                 >
                   View on the App Store
                 </a>
