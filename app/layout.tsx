@@ -24,9 +24,12 @@ export const metadata: Metadata = {
   title: "Sedat Pala",
   description: "Doctor, app builder, and maker of polished digital products.",
   icons: {
-    icon: "/icon.png",
-    shortcut: "/favicon.ico",
-    apple: "/icon.png",
+    icon: [
+      { url: "/favicon.ico?v=2" },
+      { url: "/sedat-mark.svg?v=2", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico?v=2",
+    apple: "/icon.png?v=2",
   },
 };
 
