@@ -1,13 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const CAMERAPICK_HOST = "camerapick.sedatpala.site";
+const SUBDOMAIN_ROUTES: Record<string, string> = {
+  "camerapick.sedatpala.site": "/camerapick",
+  "exify.sedatpala.site": "/exify",
+};
+
 const ASSET_PREFIXES = ["/_next", "/favicon.ico", "/robots.txt", "/sitemap.xml"];
 
 export function proxy(req: NextRequest) {
   const url = req.nextUrl.clone();
   const host = req.headers.get("host")?.toLowerCase().split(":")[0];
+  const basePath = host ? SUBDOMAIN_ROUTES[host] : undefined;
 
-  if (host !== CAMERAPICK_HOST) {
+  if (!basePath) {
     return NextResponse.next();
   }
 
@@ -20,12 +25,12 @@ export function proxy(req: NextRequest) {
   }
 
   if (url.pathname === "/") {
-    url.pathname = "/camerapick";
+    url.pathname = basePath;
     return NextResponse.rewrite(url);
   }
 
-  if (!url.pathname.startsWith("/camerapick")) {
-    url.pathname = `/camerapick${url.pathname}`;
+  if (!url.pathname.startsWith(basePath)) {
+    url.pathname = `${basePath}${url.pathname}`;
     return NextResponse.rewrite(url);
   }
 

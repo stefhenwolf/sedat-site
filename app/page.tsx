@@ -2,6 +2,35 @@ import Link from "next/link";
 import Image from "next/image";
 import { SiteShell } from "./components/site-shell";
 
+const featuredApps = [
+  {
+    name: "Exify Photo Frames",
+    status: "New",
+    icon: "/exify-icon.png",
+    href: "https://exify.sedatpala.site",
+    description:
+      "Turn photos into clean, premium EXIF frame exports with a calmer and more editorial visual finish.",
+    meta: [
+      { label: "Platform", value: "iPhone" },
+      { label: "Category", value: "Photo & Video" },
+      { label: "Focus", value: "EXIF framing" },
+    ],
+  },
+  {
+    name: "CameraPick",
+    status: "Live",
+    icon: "/camerapick-icon.png",
+    href: "https://camerapick.sedatpala.site",
+    description:
+      "Discover cameras and lenses, compare models side by side, and make cleaner buying decisions with less noise.",
+    meta: [
+      { label: "Platform", value: "iPhone / iPad" },
+      { label: "Category", value: "Photo & Video" },
+      { label: "Focus", value: "Comparison clarity" },
+    ],
+  },
+];
+
 export default function Home() {
   return (
     <SiteShell
@@ -20,76 +49,65 @@ export default function Home() {
       aside={
         <>
           <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent">
-            Featured app
+            Featured apps
           </p>
 
-          <div className="mt-6 rounded-[1.5rem] border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.82),rgba(246,236,224,0.64))] p-6">
-            <div className="flex items-start gap-5">
-              <div className="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-[1.35rem] border border-border/80 shadow-[0_14px_32px_rgba(26,49,92,0.16)]">
-                <Image
-                  src="/camerapick-icon.png"
-                  alt="CameraPick app icon"
-                  width={72}
-                  height={72}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="min-w-0">
-                <div className="flex flex-col items-start gap-3">
-                  <div className="rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-accent">
-                    Live
+          <div className="mt-6 space-y-4">
+            {featuredApps.map((app) => (
+              <div
+                key={app.name}
+                className="rounded-[1.5rem] border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.82),rgba(246,236,224,0.64))] p-6"
+              >
+                <div className="flex items-start gap-5">
+                  <div className="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-[1.35rem] border border-border/80 shadow-[0_14px_32px_rgba(26,49,92,0.16)]">
+                    <Image
+                      src={app.icon}
+                      alt={`${app.name} app icon`}
+                      width={72}
+                      height={72}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
-                  <h2 className="min-w-0 text-balance font-display text-[2.2rem] leading-none">
-                    CameraPick
-                  </h2>
+                  <div className="min-w-0">
+                    <div className="flex flex-col items-start gap-3">
+                      <div className="rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+                        {app.status}
+                      </div>
+                      <h2 className="min-w-0 text-balance font-display text-[2rem] leading-none">
+                        {app.name}
+                      </h2>
+                    </div>
+                    <p className="mt-4 text-sm leading-7 text-foreground/70">
+                      {app.description}
+                    </p>
+                  </div>
                 </div>
-                <p className="mt-4 text-sm leading-7 text-foreground/70">
-                  Discover cameras and lenses, compare models side by side, and
-                  make cleaner buying decisions with less noise.
-                </p>
-              </div>
-            </div>
 
-            <div className="mt-6 overflow-hidden rounded-[1.4rem] border border-white/60 bg-[linear-gradient(135deg,rgba(27,107,203,0.14),rgba(255,255,255,0.65))] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
-                Official app symbol
-              </p>
-              <p className="mt-2 text-sm leading-7 text-foreground/72">
-                The same CameraPick symbol used in the iOS app, now carried
-                through to the website for stronger continuity.
-              </p>
-            </div>
+                <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                  {app.meta.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-2xl border border-border/80 bg-surface px-4 py-4"
+                    >
+                      <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
+                        {item.label}
+                      </p>
+                      <p className="mt-2 text-sm font-semibold">{item.value}</p>
+                    </div>
+                  ))}
+                </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-border/80 bg-surface px-4 py-4">
-                <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                  Platform
-                </p>
-                <p className="mt-2 text-sm font-semibold">iPhone / iPad</p>
+                <a
+                  className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-accent"
+                  href={app.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Visit product
+                  <span aria-hidden="true">↗</span>
+                </a>
               </div>
-              <div className="rounded-2xl border border-border/80 bg-surface px-4 py-4">
-                <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                  Category
-                </p>
-                <p className="mt-2 text-sm font-semibold">Photo &amp; Video</p>
-              </div>
-              <div className="rounded-2xl border border-border/80 bg-surface px-4 py-4">
-                <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                  Focus
-                </p>
-                <p className="mt-2 text-sm font-semibold">Comparison clarity</p>
-              </div>
-            </div>
-
-            <a
-              className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-accent"
-              href="https://camerapick.sedatpala.site"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Visit product
-              <span aria-hidden="true">↗</span>
-            </a>
+            ))}
           </div>
         </>
       }
