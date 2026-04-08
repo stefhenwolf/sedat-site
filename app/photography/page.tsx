@@ -26,6 +26,34 @@ const fallbackStats = {
   following: "24",
 };
 
+const statDetails = [
+  {
+    key: "rank30Day",
+    label: "30-day rank",
+    description: "Recent traction across the profile.",
+  },
+  {
+    key: "allTimeRank",
+    label: "All-time rank",
+    description: "Long-tail standing on Pexels.",
+  },
+  {
+    key: "gallery",
+    label: "Gallery",
+    description: "Published photographs in the archive.",
+  },
+  {
+    key: "followers",
+    label: "Followers",
+    description: "People tracking new uploads.",
+  },
+  {
+    key: "following",
+    label: "Following",
+    description: "Accounts followed for reference.",
+  },
+] as const;
+
 function extractStatValue(html: string, label: string) {
   const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const match = html.match(new RegExp(`${escapedLabel}\\s*([0-9.]+[KMBT]?)`, "i"));
@@ -159,77 +187,118 @@ export default async function PhotographyPage() {
             stats page.
           </p>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            <div className="rounded-[1.2rem] border border-border bg-white/55 px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                Total Views
+          <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+            <div className="rounded-[1.5rem] border border-border bg-[linear-gradient(145deg,rgba(255,255,255,0.82),rgba(247,238,227,0.92))] p-5">
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.26em] text-accent">
+                    Reach
+                  </p>
+                  <p className="mt-3 text-5xl font-semibold tracking-[-0.05em] text-foreground sm:text-6xl">
+                    {stats.totalViews}
+                  </p>
+                </div>
+                <div className="rounded-full border border-border bg-white/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground/55">
+                  Live from Pexels
+                </div>
+              </div>
+
+              <p className="mt-4 max-w-lg text-sm leading-7 text-foreground/70">
+                A quick read on how the photography archive is performing right now,
+                anchored by total profile views and refreshed from the public stats page.
               </p>
-              <p className="mt-2 text-lg font-semibold">{stats.totalViews}</p>
+
+              <div className="mt-5 flex flex-wrap gap-3">
+                <div className="min-w-[140px] rounded-[1.1rem] border border-border bg-white/72 px-4 py-3">
+                  <p className="text-[11px] uppercase tracking-[0.24em] text-foreground/45">
+                    30-day rank
+                  </p>
+                  <p className="mt-2 text-xl font-semibold">{stats.rank30Day}</p>
+                </div>
+                <div className="min-w-[140px] rounded-[1.1rem] border border-border bg-white/72 px-4 py-3">
+                  <p className="text-[11px] uppercase tracking-[0.24em] text-foreground/45">
+                    All-time rank
+                  </p>
+                  <p className="mt-2 text-xl font-semibold">{stats.allTimeRank}</p>
+                </div>
+              </div>
+
+              <a
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent"
+                href="https://www.pexels.com/@sedatpala/stats/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open Pexels stats page
+                <span aria-hidden="true">↗</span>
+              </a>
             </div>
-            <div className="rounded-[1.2rem] border border-border bg-white/55 px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                30-day rank
-              </p>
-              <p className="mt-2 text-lg font-semibold">{stats.rank30Day}</p>
-            </div>
-            <div className="rounded-[1.2rem] border border-border bg-white/55 px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                All-time rank
-              </p>
-              <p className="mt-2 text-lg font-semibold">{stats.allTimeRank}</p>
-            </div>
-            <div className="rounded-[1.2rem] border border-border bg-white/55 px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                Gallery
-              </p>
-              <p className="mt-2 text-lg font-semibold">{stats.gallery}</p>
-            </div>
-            <div className="rounded-[1.2rem] border border-border bg-white/55 px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                Followers
-              </p>
-              <p className="mt-2 text-lg font-semibold">{stats.followers}</p>
-            </div>
-            <div className="rounded-[1.2rem] border border-border bg-white/55 px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
-                Following
-              </p>
-              <p className="mt-2 text-lg font-semibold">{stats.following}</p>
+
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+              {statDetails.map((item) => (
+                <div
+                  key={item.key}
+                  className="rounded-[1.2rem] border border-border bg-white/55 px-4 py-4"
+                >
+                  <p className="text-xs uppercase tracking-[0.24em] text-foreground/45">
+                    {item.label}
+                  </p>
+                  <p className="mt-2 text-2xl font-semibold tracking-[-0.03em]">
+                    {stats[item.key]}
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-foreground/62">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
-          <a
-            className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-accent"
-            href="https://www.pexels.com/@sedatpala/stats/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open Pexels stats page
-            <span aria-hidden="true">↗</span>
-          </a>
-        </article>
-
-        <div className="grid gap-4 sm:grid-cols-3">
-          {photoPreviews.map((photo) => (
-            <article
-              key={photo.src}
-              className="overflow-hidden rounded-[1.4rem] border border-border bg-surface-strong"
-            >
-              <Image
-                src={photo.src}
-                alt={photo.title}
-                width={800}
-                height={533}
-                className="h-64 w-full object-cover"
-              />
-              <div className="px-5 py-4">
-                <p className="text-sm font-semibold text-foreground/80">
-                  {photo.title}
+          <div className="mt-8 rounded-[1.5rem] border border-border bg-[linear-gradient(180deg,rgba(255,255,255,0.36),rgba(255,255,255,0.18))] p-4 sm:p-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+                  Selected frames
                 </p>
+                <h3 className="mt-2 text-xl font-semibold tracking-tight">
+                  Recent visual excerpts
+                </h3>
               </div>
-            </article>
-          ))}
-        </div>
+              <p className="max-w-xl text-sm leading-7 text-foreground/68">
+                A small preview strip from the public gallery, highlighting landscape
+                texture, distance, and framing.
+              </p>
+            </div>
+
+            <div className="mt-5 grid gap-4 sm:grid-cols-3">
+              {photoPreviews.map((photo, index) => (
+                <article
+                  key={photo.src}
+                  className="group overflow-hidden rounded-[1.35rem] border border-border bg-surface-strong"
+                >
+                  <div className="relative overflow-hidden">
+                    <Image
+                      src={photo.src}
+                      alt={photo.title}
+                      width={800}
+                      height={533}
+                      className="h-64 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/32 via-black/6 to-transparent" />
+                    <div className="absolute left-4 top-4 rounded-full border border-white/28 bg-black/18 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-white backdrop-blur-sm">
+                      Frame {index + 1}
+                    </div>
+                  </div>
+                  <div className="px-5 py-4">
+                    <p className="text-sm font-semibold text-foreground/82">
+                      {photo.title}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </article>
       </div>
     </SiteShell>
   );
