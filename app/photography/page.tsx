@@ -14,6 +14,17 @@ const photoPreviews = [
   {
     src: "https://images.pexels.com/photos/36858441/pexels-photo-36858441.jpeg?cs=srgb&dl=pexels-sedatpala-36858441.jpg&fm=jpg",
     title: "Coastal texture",
+    featured: true,
+  },
+  {
+    src: "https://images.pexels.com/photos/36969198/pexels-photo-36969198.jpeg?cs=srgb&dl=pexels-sedatpala-36969198.jpg&fm=jpg",
+    title: "Sunlit forest path",
+    featured: true,
+  },
+  {
+    src: "https://images.pexels.com/photos/36920256/pexels-photo-36920256.jpeg?cs=srgb&dl=pexels-sedatpala-36920256.jpg&fm=jpg",
+    title: "Night yacht cruise",
+    featured: true,
   },
 ];
 
@@ -265,12 +276,12 @@ export default async function PhotographyPage() {
                 </h3>
               </div>
               <p className="max-w-xl text-sm leading-7 text-foreground/68">
-                A small preview strip from the public gallery, highlighting landscape
-                texture, distance, and framing.
+                A wider preview strip pulled from the gallery, including the
+                featured selections currently highlighted on Pexels.
               </p>
             </div>
 
-            <div className="mt-5 grid gap-4 sm:grid-cols-3">
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
               {photoPreviews.map((photo, index) => (
                 <article
                   key={photo.src}
@@ -286,7 +297,7 @@ export default async function PhotographyPage() {
                     />
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/32 via-black/6 to-transparent" />
                     <div className="absolute left-4 top-4 rounded-full border border-white/28 bg-black/18 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-white backdrop-blur-sm">
-                      Frame {index + 1}
+                      {photo.featured ? "Featured" : `Frame ${index + 1}`}
                     </div>
                   </div>
                   <div className="px-5 py-4">
