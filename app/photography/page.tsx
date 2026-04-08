@@ -18,12 +18,12 @@ const photoPreviews = [
 ];
 
 const fallbackStats = {
-  totalViews: "47.2K",
-  rank30Day: "5.4K",
-  allTimeRank: "95.7K",
-  gallery: "129",
-  followers: "5",
-  following: "24",
+  totalViews: "54.8K",
+  rank30Day: "3K",
+  allTimeRank: "92K",
+  gallery: "188",
+  followers: "9",
+  following: "33",
 };
 
 const statDetails = [
@@ -183,8 +183,8 @@ export default async function PhotographyPage() {
             Current profile snapshot
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-foreground/72">
-            Live profile metrics sourced dynamically from the public Pexels
-            stats page.
+            A curated snapshot of the current Pexels profile metrics, kept in
+            sync with the latest profile view.
           </p>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
@@ -199,13 +199,13 @@ export default async function PhotographyPage() {
                   </p>
                 </div>
                 <div className="rounded-full border border-border bg-white/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground/55">
-                  Live from Pexels
+                  Updated manually
                 </div>
               </div>
 
               <p className="mt-4 max-w-lg text-sm leading-7 text-foreground/70">
                 A quick read on how the photography archive is performing right now,
-                anchored by total profile views and refreshed from the public stats page.
+                anchored by total profile views and aligned with the latest creator-side profile stats.
               </p>
 
               <div className="mt-5 flex flex-wrap gap-3">
