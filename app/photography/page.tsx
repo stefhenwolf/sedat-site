@@ -37,6 +37,14 @@ const fallbackStats = {
   following: "33",
 };
 
+type PexelsStats = typeof fallbackStats;
+type PexelsStatKey = keyof PexelsStats;
+
+type PexelsStatsResult = {
+  source: "live" | "fallback";
+  values: PexelsStats;
+};
+
 const statDetails = [
   {
     key: "rank30Day",
@@ -65,13 +73,61 @@ const statDetails = [
   },
 ] as const;
 
-function extractStatValue(html: string, label: string) {
-  const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const match = html.match(new RegExp(`${escapedLabel}\\s*([0-9.]+[KMBT]?)`, "i"));
-  return match?.[1] ?? null;
+const statLabels: Record<PexelsStatKey, string[]> = {
+  totalViews: ["Total Views", "Views"],
+  rank30Day: ["30-day rank", "30 day rank"],
+  allTimeRank: ["All-time rank", "All time rank"],
+  gallery: ["Gallery", "Photos"],
+  followers: ["Followers"],
+  following: ["Following"],
+};
+
+const fallbackStatsResult: PexelsStatsResult = {
+  source: "fallback",
+  values: fallbackStats,
+};
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-async function getPexelsStats() {
+function normalizeStatsText(html: string) {
+  return html
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, " ")
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&#x27;|&#39;/gi, "'")
+    .replace(/&quot;/gi, '"')
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractStatValue(text: string, labels: string[]) {
+  const labelPattern = labels.map(escapeRegExp).join("|");
+  const match = text.match(
+    new RegExp(`(?:${labelPattern})\\s{0,40}([0-9][0-9,.]*\\s?[KMBT]?)`, "i"),
+  );
+
+  return match?.[1]?.replace(/\s+/g, "") ?? null;
+}
+
+function parsePexelsStats(html: string): PexelsStats | null {
+  const text = normalizeStatsText(html);
+  const parsedEntries = Object.entries(statLabels).map(([key, labels]) => [
+    key,
+    extractStatValue(text, labels),
+  ]);
+
+  if (parsedEntries.some(([, value]) => value === null)) {
+    return null;
+  }
+
+  return Object.fromEntries(parsedEntries) as PexelsStats;
+}
+
+async function getPexelsStats(): Promise<PexelsStatsResult> {
   noStore();
 
   try {
@@ -84,27 +140,27 @@ async function getPexelsStats() {
     });
 
     if (!response.ok) {
-      return fallbackStats;
+      return fallbackStatsResult;
     }
 
     const html = await response.text();
+    const stats = parsePexelsStats(html);
 
-    return {
-      totalViews: extractStatValue(html, "Total Views") ?? fallbackStats.totalViews,
-      rank30Day: extractStatValue(html, "30-day rank") ?? fallbackStats.rank30Day,
-      allTimeRank:
-        extractStatValue(html, "All-time rank") ?? fallbackStats.allTimeRank,
-      gallery: extractStatValue(html, "Gallery") ?? fallbackStats.gallery,
-      followers: extractStatValue(html, "Followers") ?? fallbackStats.followers,
-      following: extractStatValue(html, "Following") ?? fallbackStats.following,
-    };
+    if (!stats) {
+      return fallbackStatsResult;
+    }
+
+    return { source: "live", values: stats };
   } catch {
-    return fallbackStats;
+    return fallbackStatsResult;
   }
 }
 
 export default async function PhotographyPage() {
-  const stats = await getPexelsStats();
+  const statsResult = await getPexelsStats();
+  const stats = statsResult.values;
+  const snapshotLabel =
+    statsResult.source === "live" ? "Live sync" : "Last saved snapshot";
 
   return (
     <SiteShell
@@ -194,8 +250,9 @@ export default async function PhotographyPage() {
             Current profile snapshot
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-foreground/72">
-            A curated snapshot of the current Pexels profile metrics, kept in
-            sync with the latest profile view.
+            A curated snapshot of the current Pexels profile metrics, using
+            live data when available and the last saved snapshot when the stats
+            page cannot be verified.
           </p>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
@@ -210,7 +267,7 @@ export default async function PhotographyPage() {
                   </p>
                 </div>
                 <div className="rounded-full border border-border bg-white/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground/55">
-                  Updated manually
+                  {snapshotLabel}
                 </div>
               </div>
 

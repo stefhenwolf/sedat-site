@@ -23,7 +23,7 @@ const sansFont = Manrope({
 
 export const metadata: Metadata = {
   title: "Sedat Pala",
-  description: "Doctor, app builder, and maker of polished digital products.",
+  description: "App builder and maker of polished digital products.",
   icons: {
     icon: [
       { url: "/favicon.ico?v=2" },

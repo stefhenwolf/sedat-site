@@ -119,8 +119,6 @@ export default function Home() {
           </p>
           <div className="mt-5 inline-flex items-center gap-3 rounded-full border border-border bg-white/55 px-4 py-2 text-sm text-foreground/75">
             <span className="h-2 w-2 rounded-full bg-accent" />
-            Doctor
-            <span className="text-foreground/35">/</span>
             App Builder
           </div>
 
