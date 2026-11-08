@@ -14,6 +14,13 @@ const tools = [
     note: "En fazla 30 kare.",
   },
   {
+    name: "Reels Studio",
+    cta: "Reels Studio'yu aç",
+    href: "https://claude.ai/artifact/UKM77miXq9YQ8DS7op6BX7",
+    body: "Fotoğraflarından 1080×1920 Reels videosu: yavaş zoom, önce/sonra, seri. Açılış yazısı, caption ve 5 hashtag Claude'dan.",
+    note: "Müziği Instagram'da ekle; önce Trial Reel olarak paylaş.",
+  },
+  {
     name: "Büyüme Planı",
     cta: "Büyüme Planı'nı aç",
     href: "https://claude.ai/artifact/DT3XFydH8Hjdj4iig8toHJ",
