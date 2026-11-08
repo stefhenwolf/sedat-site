@@ -13,6 +13,20 @@ const tools = [
     body: "Son karelerini yükle; Claude puanlasın, en güçlü 5'ini, paylaşım gün ve saatini, ızgara sırasını önersin.",
     note: "En fazla 30 kare.",
   },
+  {
+    name: "Büyüme Planı",
+    cta: "Büyüme Planı'nı aç",
+    href: "https://claude.ai/artifact/DT3XFydH8Hjdj4iig8toHJ",
+    body: "7 yöntem, haftalık paylaşım ritmi, işaretlenebilir haftalık liste ve 30 günlük hedefler.",
+    note: "Senin verine ve 2026 algoritmasına göre hazırlandı.",
+  },
+  {
+    name: "Performans Panosu",
+    cta: "Panoyu aç",
+    href: "https://claude.ai/artifact/Fn93B6B97Sap7qwLrLfznt",
+    body: "Aylık erişim, kategori, format, saat ve gün analizi; en çok erişen gönderiler.",
+    note: "Yeni Meta dışa aktarımıyla güncellenir.",
+  },
 ];
 
 const links = [
