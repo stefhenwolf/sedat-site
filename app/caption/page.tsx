@@ -30,8 +30,8 @@ const tools = [
   {
     name: "Performans Özeti (telefon)",
     cta: "Telefon özetini aç",
-    href: "https://claude.ai/artifact/6JLZH8Xqs5PwRfSADJD1aN",
-    body: "Panonun sade hali; eski iPhone'larda da açılır.",
+    href: "/caption/performans",
+    body: "Panonun sade hali; doğrudan bu sitede açılır, eski iPhone'larda da çalışır.",
     note: "Panoyla aynı veri.",
   },
 ];
