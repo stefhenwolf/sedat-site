@@ -27,6 +27,13 @@ const tools = [
     body: "Aylık erişim, kategori, format, saat ve gün analizi; en çok erişen gönderiler.",
     note: "Yeni Meta dışa aktarımıyla güncellenir.",
   },
+  {
+    name: "Performans Özeti (telefon)",
+    cta: "Telefon özetini aç",
+    href: "https://claude.ai/artifact/6JLZH8Xqs5PwRfSADJD1aN",
+    body: "Panonun sade hali; eski iPhone'larda da açılır.",
+    note: "Panoyla aynı veri.",
+  },
 ];
 
 const links = [
